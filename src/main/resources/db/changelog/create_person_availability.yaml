@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create person_availability table
+      author: Nikolett
+      changes:
+        - createTable:
+            schema: dbo
+            tableName: person_availability
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: person_availability_type
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: availability
+                  type: nvarchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: person_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_person_availability_person_id
+                    references: person(id)
+                    nullable: false
+              - column:
+                  name: mod_stamp
+                  type: datetime2
+                  constraints:
+                    nullable: false

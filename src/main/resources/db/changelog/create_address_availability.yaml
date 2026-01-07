@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create address_availability table
+      author: Nikolett
+      changes:
+        - createTable:
+            schema: dbo
+            tableName: address_availability
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: address_availability_type
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: availability
+                  type: nvarchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_address_availability_address_id
+                    references: address(id)
+                    nullable: false
+              - column:
+                  name: mod_stamp
+                  type: datetime2
+                  constraints:
+                    nullable: false

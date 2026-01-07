@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create address table
+      author: Nikolett
+      changes:
+        - createTable:
+            schema: dbo
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: address_type
+                  type: char(9)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: zip_code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: nvarchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_line
+                  type: nvarchar(1000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: person_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_address_person_id
+                    references: person(id)
+                    nullable: false
+              - column:
+                  name: mod_stamp
+                  type: datetime2
+                  constraints:
+                    nullable: false

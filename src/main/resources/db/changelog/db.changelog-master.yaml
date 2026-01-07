@@ -1,1 +1,13 @@
 databaseChangeLog:
+  - include:
+      file: create_person.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create_address.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create_address_availability.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create_person_availability.yaml
+      relativeToChangelogFile: true
