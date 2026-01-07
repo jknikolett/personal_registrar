@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: Initialize test data
+      author: Nikolett
+      context: dev
+      changes:
+        - sql:
+            sql:
+              INSERT into person (first_name, last_name, mod_stamp) 
+                values ('Nikolett', 'Ócsai', current_timestamp);
+              
+              INSERT into address (address_type, zip_code, city, address_line, person_id, mod_stamp) 
+                values ('TEMPORARY', '1144', 'Budapest', 'Vadvirág u. 21', (select id from person where first_name = 'Nikolett'), current_timestamp);
+              
+              INSERT into address_availability (address_availability_type, availability, address_id, mod_stamp)
+                values('PHONE', '+3611234567', (select id from address where zip_code = '1144'), current_timestamp);
+              
+              INSERT into person_availability (person_availability_type, availability, person_id, mod_stamp)
+              values('EMAIL', 'test@test.com', (select id from person where first_name = 'Nikolett'), current_timestamp);
