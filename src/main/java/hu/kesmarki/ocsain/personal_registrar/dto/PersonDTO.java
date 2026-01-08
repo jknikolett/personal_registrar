@@ -1,5 +1,6 @@
 package hu.kesmarki.ocsain.personal_registrar.dto;
 
+import hu.kesmarki.ocsain.personal_registrar.controller.validator.AddressConstraint;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -26,6 +27,7 @@ public class PersonDTO{
     private String lastName;
     @Past
     private LocalDate dateOfBirth;
+    @AddressConstraint
     private List<@Valid AddressDTO> addresses;
     private List<@Valid PersonAvailabilityDTO> personAvailabilities;
 }
