@@ -27,9 +27,9 @@ public class CustomPersonRepositoryImpl implements CustomPersonRepository{
     private QueryStringWithParams buildQuery(SearchDTO searchDTO){
         StringBuilder queryString = new StringBuilder("""
                 SELECT DISTINCT p FROM Person p
-                INNER JOIN p.addresses a
-                INNER JOIN p.personAvailabilities pa
-                INNER JOIN a.addressAvailabilities aa
+                LEFT JOIN p.addresses a
+                LEFT JOIN p.personAvailabilities pa
+                LEFT JOIN a.addressAvailabilities aa
                 WHERE 1=1
                 """);
         Map<String, Object> params = new HashMap<>();

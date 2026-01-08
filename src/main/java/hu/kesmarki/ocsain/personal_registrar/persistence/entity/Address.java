@@ -18,6 +18,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "address_type")
     private AddressType addressType;
 
@@ -30,7 +32,7 @@ public class Address {
     @Column(name = "address_line")
     private String addressLine;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private Person person;
 
@@ -38,6 +40,6 @@ public class Address {
     private LocalDateTime modStamp;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<AddressAvailability> addressAvailabilities;
 }

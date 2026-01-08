@@ -17,13 +17,14 @@ public class PersonAvailability {
     @Column(name = "id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "person_availability_type")
     private PersonAvailabilityType personAvailabilityType;
 
     @Column(name = "availability")
     private String availability;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private Person person;
 

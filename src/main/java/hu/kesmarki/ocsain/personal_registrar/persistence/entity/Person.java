@@ -31,10 +31,10 @@ public class Person {
     private LocalDateTime modStamp;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Address> addresses;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<PersonAvailability> personAvailabilities;
 }
