@@ -4,12 +4,14 @@ import hu.kesmarki.ocsain.personal_registrar.dto.PersonDTO;
 import hu.kesmarki.ocsain.personal_registrar.dto.SearchDTO;
 import hu.kesmarki.ocsain.personal_registrar.service.PersonService;
 import hu.kesmarki.ocsain.personal_registrar.service.exception.PersonNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Validated
 @RestController
 @RequestMapping("/person")
 @RequiredArgsConstructor
@@ -27,7 +29,7 @@ public class PersonController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PersonDTO save(@RequestBody PersonDTO personDTO){
+    public PersonDTO save(@RequestBody @Valid PersonDTO personDTO){
         return personService.save(personDTO);
     }
     @DeleteMapping(value = "/{id}")
