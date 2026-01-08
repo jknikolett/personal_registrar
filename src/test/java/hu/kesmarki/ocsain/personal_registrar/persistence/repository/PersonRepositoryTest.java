@@ -1,5 +1,6 @@
 package hu.kesmarki.ocsain.personal_registrar.persistence.repository;
 
+import hu.kesmarki.ocsain.personal_registrar.dto.SearchDTO;
 import hu.kesmarki.ocsain.personal_registrar.persistence.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -9,7 +10,9 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,10 +88,32 @@ public class PersonRepositoryTest {
         assertNull(deletedPerson);
     }
 
+    @Test
+    public void testFind(){
+        personRepository.save(buildPerson());
+        SearchDTO searchDTO = SearchDTO.builder()
+                .firstName("iko")
+                .lastName("cs")
+                .fromDateOfBirth(LocalDate.of(2000, Month.DECEMBER, 17))
+                .toDateOfBirth(LocalDate.of(2000, Month.DECEMBER, 17))
+                .personAvailabilityType(PersonAvailabilityType.EMAIL)
+                .personAvailability("test")
+                .addressType(AddressType.PERMANENT)
+                .zipCode("11")
+                .city("Bu")
+                .addressLine("rág")
+                .addressAvailabilityType(AddressAvailabilityType.PHONE)
+                .addressAvailability("2")
+        .build();
+        List<Person> personList = personRepository.findBySearchDTO(searchDTO);
+        assertEquals(1, personList.size());
+    }
+
     private Person buildPerson(){
         Person person = Person.builder()
                 .firstName("Nikolett")
                 .lastName("Ócsai")
+                .dateOfBirth(LocalDate.of(2000, Month.DECEMBER, 17))
                 .modStamp(LocalDateTime.now().withNano(0))
                 .build();
         person.setPersonAvailabilities(List.of(PersonAvailability.builder()
