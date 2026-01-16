@@ -24,7 +24,7 @@ public class AddressAvailability {
     @Column(name = "availability")
     private String availability;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
 
