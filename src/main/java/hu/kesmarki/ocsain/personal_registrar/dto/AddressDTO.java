@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,5 +28,6 @@ public class AddressDTO {
     @NotNull
     @Size(max=1000)
     private String addressLine;
-    private List<@Valid AddressAvailabilityDTO> addressAvailabilities;
+    @Builder.Default
+    private List<@Valid AddressAvailabilityDTO> addressAvailabilities = new ArrayList<>();
 }
