@@ -6,9 +6,9 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.List;
 
-public class AddressConstraintValidator implements ConstraintValidator<AddressConstraint, List<AddressDTO>> {
+public class AddressTypeConstraintValidator implements ConstraintValidator<AddressTypeConstraint, List<AddressDTO>> {
     @Override
-    public void initialize(AddressConstraint constraintAnnotation) {
+    public void initialize(AddressTypeConstraint constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
