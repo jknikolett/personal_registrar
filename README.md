@@ -6,6 +6,9 @@ Please update the database connection parameters in application.properties.
 
 Find persons:
 ``` url
+GET localhost:8080/person
+```
+``` url
 GET localhost:8080/person?firstName=Nikolett
 ```
 Get person:
