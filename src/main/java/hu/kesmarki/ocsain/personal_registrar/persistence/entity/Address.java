@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -40,6 +41,7 @@ public class Address {
     private LocalDateTime modStamp;
 
     @ToString.Exclude
+    @Builder.Default
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<AddressAvailability> addressAvailabilities;
+    private List<AddressAvailability> addressAvailabilities = new ArrayList<>();
 }

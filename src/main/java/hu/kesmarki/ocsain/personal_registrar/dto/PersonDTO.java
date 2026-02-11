@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +29,9 @@ public class PersonDTO{
     @Past
     private LocalDate dateOfBirth;
     @AddressConstraint
-    private List<@Valid AddressDTO> addresses;
-    private List<@Valid PersonAvailabilityDTO> personAvailabilities;
+    @Builder.Default
+    private List<@Valid AddressDTO> addresses = new ArrayList<>();
+    @Builder.Default
+    private List<@Valid PersonAvailabilityDTO> personAvailabilities = new ArrayList<>();
 }
 

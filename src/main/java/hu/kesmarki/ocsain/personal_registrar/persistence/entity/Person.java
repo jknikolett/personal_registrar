@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Data
@@ -31,10 +32,12 @@ public class Person {
     private LocalDateTime modStamp;
 
     @ToString.Exclude
+    @Builder.Default
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<Address> addresses;
+    private List<Address> addresses = new ArrayList<>();
 
     @ToString.Exclude
+    @Builder.Default
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<PersonAvailability> personAvailabilities;
+    private List<PersonAvailability> personAvailabilities = new ArrayList<>();
 }
