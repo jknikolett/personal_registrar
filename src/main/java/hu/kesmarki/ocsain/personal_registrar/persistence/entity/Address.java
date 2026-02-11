@@ -32,7 +32,7 @@ public class Address {
     @Column(name = "address_line")
     private String addressLine;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
 
